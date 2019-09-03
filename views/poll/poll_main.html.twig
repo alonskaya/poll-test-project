@@ -1,0 +1,34 @@
+{% extends "app.html.twig" %}
+
+{% block title %}Poll creation{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div id="form-row" class="row justify-content-center align-items-center">
+            <div id="form-column" class="col-md-6">
+                <div id="content-box" class="col-md-12">
+                    {{ form_errors(form) }}
+                    <form name="{{ form.vars.name }}" method="post">
+                        <h3 class="text-center">Fill out Poll:</h3>
+
+                        <div class="form-group">
+                            <label for="{{ form.question.vars.name }}">{{ form.question.vars.label }}:</label><br>
+                            {{ form_widget(form.question, {attr: {class: 'form-control', id: form.question.vars.name }}) }}
+                        </div>
+
+                        <ol id="answers-fields-list"
+                            data-prototype="{{ form_widget(form.answers.vars.prototype)|e }}"
+                            data-widget-tags="{{ '<li></li>'|e }}">
+                        </ol>
+
+                        <button type="button" class="btn btn-default" id="add-button">+</button>
+
+                        <div class="form-group"><br>
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="Start">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

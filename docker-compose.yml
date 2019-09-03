@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: .
+      args:
+        - WITH_XDEBUG=true
+    volumes:
+      - .:/var/www
+    restart: always
+    environment:
+      - XDEBUG_CONFIG=remote_host=172.17.0.1
+      - ENV=dev
+      - PHP_OPCACHE=0
+      - APP_SECRET=c65PJZ5ysDRU45ZaVrSQe5w68tRsF2bB
+
+  nginx:
+    image: nginx
+    depends_on:
+      - backend
+    restart: always
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./public:/var/www/public
+    ports:
+      - 8999:80
+    environment:
+      - APP_ENTRYPOINT=/var/www/index.php
+      - FPM_UPSTREAM=backend:9000
