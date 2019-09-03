@@ -13,10 +13,5 @@ class StringSet extends Constraint
     /**
      * @var string
      */
-    public $message = 'Element {{ elem }} already exists';
-
-    /**
-     * @var string
-     */
-    public $value_field = null;
+    public $message = 'The poll cannot contain the same answer choices';
 }

@@ -27,14 +27,10 @@ class StringSetValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, sprintf('%s or array', \Traversable::class));
         }
 
-        foreach ($value as $index => $item) {
-            if (in_array($item, $value, true)) {
-                $this->context->buildViolation($constraint->message)
-                    ->setParameter('{{ elem }}', $item)
-                    ->addViolation();
+        if (count($value) !== count(array_unique($value))) {
+            $this->context->buildViolation($constraint->message)->addViolation();
 
-                return;
-            }
+            return;
         }
     }
 }

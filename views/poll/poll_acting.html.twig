@@ -1,0 +1,48 @@
+{% extends "app.html.twig" %}
+
+{% block title %}Poll{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div id="form-row" class="row justify-content-center align-items-center">
+            <div id="form-column" class="col-md-6">
+                <div id="content-box" class="col-md-12">
+                    {{ form_errors(form) }}
+                    <form name="{{ form.vars.name }}" method="post">
+                        <h3 class="text-center">Your answer:</h3>
+
+                        <div class="form-group">
+                            <label for="{{ form.name.vars.name }}">{{ form.name.vars.label }}:</label><br>
+                            {{ form_widget(form.name, {attr: {class: 'form-control', id: form.name.vars.name, disabled: form_disabled }}) }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.question.vars.name }}">{{ form.question.vars.label }}:</label><br>
+                            {{ form_widget(form.question, {attr: {class: 'form-control', id: form.question.vars.name, disabled: form_disabled }}) }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.answers.vars.name }}">{{ form.answers.vars.label }}:</label><br>
+                            {% for answer in form.answers %}
+                                {{ form_widget(answer, {attr: {id: answer.vars.name, disabled: form_disabled }}) }}
+                                {{ answer.vars.value }}<br>
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" id="answer-button" value="Answer">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="results-block"></div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="../../public/js/poll_acting.js"></script>
+{% endblock %}

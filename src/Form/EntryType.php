@@ -21,12 +21,10 @@ class EntryType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'allow_add'     => true,
-                'allow_delete'  => true,
-                'entry_type'    => TextType::class,
-                //'constraints'   => [new StringSet(['value_field' => 'answer'])],
-                'cascade_validation' => true
-
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'entry_type'   => TextType::class,
+                'constraints'  => [new StringSet()]
             ]
         );
 

@@ -2,9 +2,7 @@
 
 namespace App\Form;
 
-use App\Constraints\StringSet;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -23,15 +21,12 @@ class PollBuilderType extends AbstractType
         $builder
             ->setMethod('POST')
             ->add('question', TextType::class, [
-                    'label' => 'Question',
-                ]
-            )
+                'label' => 'Question',
+            ])
             ->add('answers', EntryType::class, [
-                'allow_add'      => true,
-                'allow_delete'   => true,
-                'label'          => 'Answers',
-                'constraints'   => [new StringSet(['value_field' => 'answer'])]
-
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'label'        => 'Answers',
             ]);
     }
 }

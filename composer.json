@@ -8,7 +8,9 @@
         "symfony/twig-bridge": "^4.3",
         "symfony/form": "^4.3",
         "klein/klein": "^2.1",
-        "symfony/validator": "^4.3"
+        "symfony/validator": "^4.3",
+        "predis/predis": "^1.1",
+        "ext-json": "*"
     },
     "license": "proprietary",
     "authors": [

@@ -16,10 +16,12 @@
                             {{ form_widget(form.question, {attr: {class: 'form-control', id: form.question.vars.name }}) }}
                         </div>
 
-                        <ol id="answers-fields-list"
-                            data-prototype="{{ form_widget(form.answers.vars.prototype)|e }}"
-                            data-widget-tags="{{ '<li></li>'|e }}">
-                        </ol>
+                        <div class="form-group">
+                            <ol id="answers-fields-list"
+                                data-prototype="{{ form_widget(form.answers.vars.prototype, {attr: {class: 'form-control'}})|e }}"
+                                data-widget-tags="{{ '<li></li>'|e }}">
+                            </ol>
+                        </div>
 
                         <button type="button" class="btn btn-default" id="add-button">+</button>
 
@@ -31,4 +33,10 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="../../public/js/poll_builder.js"></script>
 {% endblock %}

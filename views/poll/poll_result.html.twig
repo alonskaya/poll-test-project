@@ -1,0 +1,25 @@
+<h3 class="text-center">Results:</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            {% for header in headers %}
+                <th>{{ header }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for name,result in results %}
+            <tr>
+                <td>{{ name }}</td>
+                {% for header in headers %}
+                    {% if header == result %}
+                        <td>X</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
